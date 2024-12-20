@@ -1,4 +1,4 @@
-# senfOS (this name might be changed in future updates)
+# senfOS™ (name might be changed in future updates)
 
 <!-- Video Demo: https://www.youtube.com/watch?v=yMOm_irrVgQ -->
 [![senfOS Demo](https://img.youtube.com/vi/yMOm_irrVgQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=yMOm_irrVgQ)
