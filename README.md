@@ -31,7 +31,7 @@ Made in Germany. Built with C/C++, PicoSDK and Waveshare library.
 - [Raspberry Pico W 2](https://www.raspberrypi.com/products/raspberry-pi-pico-2/?variant=pico-2-w)
 - [Waveshare OLED 1.3" Display](https://www.waveshare.com/pico-oled-1.3.htm)
 - [Raspberry Pi USB Micro Cable](https://www.welectron.com/Offizielles-Raspberry-Pi-micro-USB-Kabel)
-- [TP-Link](https://www.tp-link.com/de/home-networking/mifi/m7350/)
+- [TP-Link M7350 LTE/4G Router](https://www.tp-link.com/de/home-networking/mifi/m7350/)
 - [Ja!mobil SIM card](https://www.jamobil.de/)
 
 ### Software Used
