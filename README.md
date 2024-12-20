@@ -67,9 +67,9 @@ Install VS Code and the VS Code Extension for Raspberry Pico (use the official e
 
 After you clicked "New C/C++ Project", type a project name and select all "Features" like shown above. Also select "Generate C++ code", "Enable C++ RTTI", "Enable C++ Exceptions".
 
-![First project feature settings]https://i.imgur.com/9FxARNB.png
+![First project feature settings](https://i.imgur.com/9FxARNB.png)
 
-![Create project]https://i.imgur.com/SGKTDXT.png
+![Create project](https://i.imgur.com/SGKTDXT.png)
 
 Select everything like in the pictures shown above, then click on "Create". It can take up to 15 minutes until everything is downloaded. Let it finish downloading (it will install PicoSDK and CMake)!
 
