@@ -35,7 +35,7 @@ Made in Germany. Built with C/C++, PicoSDK and Waveshare library.
 - [Ja!mobil SIM card](https://www.jamobil.de/)
 
 ### Software Used
-- [PicoSDK](https://github.com/raspberrypi/pico-sdk)
+- [PicoSDK 2.1.0](https://github.com/raspberrypi/pico-sdk)
 - [Waveshare Library](https://github.com/waveshare/Pico_code)
 
 ### Software Used For Coding & Building Process
