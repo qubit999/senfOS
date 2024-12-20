@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+    <title>Get Result</title>
+</head>
+<body>
+<h1>GET Result:</h1>
+<ul>
+    <li>Key 1: <!--#Key1--></li>
+    <li>Value 1: <!--#Value1--></li>
+    <li>Key 2: <!--#Key2--></li>
+    <li>Value 2: <!--#Value2--></li>
+</ul>
+</body>
+</html>

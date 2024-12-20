@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Index</title>
+</head>
+<body>
+<h1>Index</h1>
+<p>CGI and SSI implemented.</p>
+<p>The POST example doesn't show any value after submitting (but you can see the values when connected to the console).</p>
+<p>The GET example shows key and value of URL parameters after submitting using SSI.</p>
+<h2>POST Example:</h2>
+<form action="/post" method="post">
+    <label for="value1">Enter a value:</label>
+    <input type="text" name="value1">
+    <label for="value2">Enter another value:</label>
+    <input type="text" name="value2">
+    <input type="submit" value="submit">
+</form>
+<h2>GET Example: </h2>
+<form action="/get" method="get">
+    <label for="value1">Enter a value:</label>
+    <input type="text" name="value1">
+    <label for="value2">Enter another value:</label>
+    <input type="text" name="value2">
+    <input type="submit" value="submit">
+</form>
+<h2>Send A Message To OLED Screen:</h2>
+<form action "/sendMessage" method="post">
+    <label for="msg">Nachricht:</label>
+    <input type="text" name="msg" maxlength="32">
+    <input type="submit" value="submit">
+</form>
+<h2>Download Example:</h2>
+<a href="hello.zip">Download hello.zip</a>
+<h2>Info</h2>
+<p>developed by a.s. / qubit999 / liquid_nitr0gen</p>
+<p>contact: <a href="mailto:regatta-42.pommel@icloud.com">regatta-42.pommel@icloud.com</a></p>
+<p>senfOS and webserver written in C/C++</p>
+</body>
+</html>
