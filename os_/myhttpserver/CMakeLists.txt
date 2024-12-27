@@ -2,23 +2,7 @@ cmake_minimum_required(VERSION 3.13)
 
 project(myhttpserver C CXX ASM)
 
-# # MbedTLS default START
-# # 1. MbedTLS custom config setup
-# set(MBEDTLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/mbedtls)
 set(MBEDTLS_CONFIG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/mbedtls_config.h")
-# add_compile_definitions(
-#      MBEDTLS_CONFIG_FILE="<mbedtls_config.h>"
-# )
-# set(ENABLE_TESTING OFF CACHE BOOL "Disable mbedtls testing" FORCE)
-# set(ENABLE_PROGRAMS OFF CACHE BOOL "Disable mbedtls programs" FORCE)
-# set(MBEDTLS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/mbedtls)
-# # Add mbedtls build
-# include_directories(
-#     ${MBEDTLS_DIR}/include/mbedtls
-#     ${MBEDTLS_DIR}/library
-# )
-# add_subdirectory(${MBEDTLS_DIR})
-# # MbedTLS END
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -61,9 +45,6 @@ target_link_libraries(myhttpserver
     pico_lwip_sntp
     pico_lwip_mbedtls
     pico_mbedtls
-    # mbedtls
-    # mbedcrypto
-    # mbedx509
     hardware_spi
     Config
     Infrared
