@@ -17,7 +17,7 @@ target_include_directories(hotspot PUBLIC
 
 target_link_libraries(hotspot
     pico_stdlib
-    pico_cyw43_arch_lwip_threadsafe_background
+    pico_cyw43_arch_lwip_poll
     myhttpserver
 )
 

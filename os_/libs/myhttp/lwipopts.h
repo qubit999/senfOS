@@ -41,14 +41,16 @@
 #define LWIP_AUTOIP                     1
 #define LWIP_DHCP_AUTOIP_COOP           1
 #define LWIP_IPV6                       1
-#define LWIP_IPV6_DNS                   1
+#define LWIP_IPV6_DNS                    1
+#define LWIP_ARP                        1
+#define LWIP_TIMERS                     1
 
-//#define LWIP_DEBUG                      1
-//#define HTTPD_DEBUG                     LWIP_DBG_ON
-//#define DNS_DEBUG                       LWIP_DBG_ON
-//#define TCP_DEBUG                       LWIP_DBG_ON
-//#define MEM_DEBUG                       LWIP_DBG_ON
-//#define PBUF_DEBUG                      LWIP_DBG_ON
-//#define MEMP_DEBUG                      LWIP_DBG_ON
+#define LWIP_DEBUG                      1
+#define HTTPD_DEBUG                     LWIP_DBG_ON
+#define DNS_DEBUG                       LWIP_DBG_ON
+#define TCP_DEBUG                       LWIP_DBG_ON
+#define MEM_DEBUG                       LWIP_DBG_ON
+#define PBUF_DEBUG                      LWIP_DBG_ON
+#define MEMP_DEBUG                      LWIP_DBG_ON
 
 #endif // LWIPOPTS_H

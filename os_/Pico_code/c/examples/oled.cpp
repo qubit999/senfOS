@@ -63,7 +63,7 @@ void Pico_OLED_1_3::drawPage(const char* text1, const char* text2, const char* t
 
 void Pico_OLED_1_3::displayImage(const UBYTE* image) {
     OLED_1in3_C_Display(image);
-    DEV_Delay_ms(5000);
+    DEV_Delay_ms(100);
 }
 
 void Pico_OLED_1_3::handleInput(const char* text1, const char* text2, const char* text2_1, const char* text2_2, const char* boot1, const char* boot2, int fontSize) {

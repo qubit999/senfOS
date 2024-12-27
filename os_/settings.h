@@ -1,5 +1,5 @@
-#define SSID "<WIFI_NAME>"
-#define PASSWORD "<WIFI_PASSWORD>"
+#define SSID ""
+#define PASSWORD ""
 #define APN "internet.t-d1.de" // APN for German T-Mobile SIM card, will be implemented later
 #define HOTSPOT_NAME "senf-hotspot"
 #define HOTSPOT_PASS "mittelscharf"

@@ -1,0 +1,32 @@
+#ifndef PSA_CRYPTO_CONFIG_H
+#define PSA_CRYPTO_CONFIG_H
+
+#define MBEDTLS_PLATFORM_MEMORY
+
+#define MBEDTLS_NO_PLATFORM_ENTROPY
+#define MBEDTLS_ENTROPY_HARDWARE_ALT
+
+#define MBEDTLS_SSL_OUT_CONTENT_LEN    2048
+
+#define MBEDTLS_PEM_PARSE_C
+#define MBEDTLS_BASE64_C
+
+#define MBEDTLS_ALLOW_PRIVATE_ACCESS
+#define MBEDTLS_HAVE_TIME
+#define MBEDTLS_HAVE_TIME_DATE
+#define MBEDTLS_MS_TIME_ALT
+
+#define PSA_WANT_ALG_SHA_256                    1
+#define PSA_WANT_ALG_RSA_PKCS1V15_SIGN         1
+#define PSA_WANT_ALG_RSA_PSS                    1
+#define PSA_WANT_ALG_ECDSA                      1
+#define PSA_WANT_ALG_DETERMINISTIC_ECDSA        1
+#define PSA_WANT_KEY_TYPE_RSA_KEY_PAIR         1
+#define PSA_WANT_KEY_TYPE_RSA_PUBLIC_KEY       1
+#define PSA_WANT_KEY_TYPE_ECC_KEY_PAIR         1
+#define PSA_WANT_KEY_TYPE_ECC_PUBLIC_KEY       1
+
+#define PSA_WANT_ECC_SECP_R1_256               1
+#define PSA_WANT_ECC_SECP_R1_384               1
+
+#endif /* PSA_CRYPTO_CONFIG_H */
