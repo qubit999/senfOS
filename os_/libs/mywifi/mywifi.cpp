@@ -25,23 +25,12 @@ bool MyWiFi::connect(const char* ssid, const char* password) {
     // Connect to Wi-Fi
     printf("Connecting to Wi-Fi...\n");
     uint32_t start = to_ms_since_boot(get_absolute_time());
-    while (cyw43_arch_wifi_connect_async(ssid, password, CYW43_AUTH_WPA2_AES_PSK) != 0) {
-        if (to_ms_since_boot(get_absolute_time()) - start > 30000) {
-            printf("Failed to connect to Wi-Fi\n");
-            return false;
-        }
-        cyw43_arch_poll();
-    }
+    cyw43_arch_wifi_connect_async(ssid, password, CYW43_AUTH_WPA2_AES_PSK);
     printf("Wi-Fi connected\n");
-    
+    sleep_ms(2000);
     // Wait for DHCP to assign an IP address
-    start = to_ms_since_boot(get_absolute_time());
-    while (netif_ip4_addr(netif_default)->addr == 0) {
-        if (to_ms_since_boot(get_absolute_time()) - start > 30000) {
-            printf("Failed to obtain IP address via DHCP\n");
-            return false;
-        }
-        cyw43_arch_poll();
+    while(this->showLocalIPv4() == "No IP") {
+        sleep_ms(1000);
     }
     printf("IP address obtained\n");
     return true;

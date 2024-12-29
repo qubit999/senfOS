@@ -15,7 +15,7 @@ target_include_directories(blink PUBLIC
 
 target_link_libraries(blink
     pico_stdlib
-    pico_cyw43_arch_lwip_poll
+    pico_cyw43_arch_lwip_threadsafe_background
     hardware_spi 
     hardware_i2c 
     hardware_dma 

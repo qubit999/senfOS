@@ -14,7 +14,7 @@ target_include_directories(mywifi PUBLIC
 
 target_link_libraries(mywifi
     pico_stdlib
-    pico_cyw43_arch_lwip_poll
+    pico_cyw43_arch_lwip_threadsafe_background
     pico_lwip
     pico_lwip_core6
 )

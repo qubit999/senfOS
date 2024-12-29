@@ -43,7 +43,6 @@
 #define LWIP_UDP                        1
 #define UDP_TTL                         255
 #define LWIP_NETIF_STATUS_CALLBACK      1
-#define LWIP_NETIF_LINK_CALLBACK        1
 #define LWIP_NETIF_HOSTNAME             1
 #define LWIP_STATS                      0
 #define LWIP_PROVIDE_ERRNO              1
@@ -74,13 +73,12 @@
 #define LWIP_HTTPD_DYNAMIC_HEADERS      1
 #define LWIP_HTTPD_CUSTOM_FILES         1
 #define HTTPD_FSDATA_FILE               "my_fsdata.c"
-#define LWIP_HTTPD_CUSTOM_FILES         1
 #define LWIP_HTTPD_DYNAMIC_HEADERS      1
 #define LWIP_HTTPD_FS_ASYNC_READ        1
 #define LWIP_HTTPD_DYNAMIC_FILE_READ    1
 #define LWIP_HTTPD_FILE_EXTENSION       1
 #define HTTPD_SERVER_PORT               9999 // CHANGE SERVER PORT HERE
-#define HTTPD_SERVER_PORT_HTTPS         443
+#define HTTPD_SERVER_PORT_HTTPS         443 // CHANGE HTTPS SERVER PORT HERE
 #define HTTPD_ENABLE_HTTPS              1
 #define LWIP_HTTPD_SUPPORT_HTTPS        1
 
@@ -109,11 +107,11 @@
 // #define LWIP_HTTPD_DYNAMIC_FILE_READ 1
 // #define LWIP_HTTPD_FILE_EXTENSION 1
 
-#define HTTPD_DEBUG                     LWIP_DBG_ON
-#define LWIP_DEBUG                         1
-#define ALTCP_MBEDTLS_DEBUG             LWIP_DBG_ON
-#define TCP_DEBUG                       LWIP_DBG_ON
-#define MEM_DEBUG                       LWIP_DBG_ON
+// #define HTTPD_DEBUG                     LWIP_DBG_ON
+// #define LWIP_DEBUG                         1
+// #define ALTCP_MBEDTLS_DEBUG             LWIP_DBG_ON
+// #define TCP_DEBUG                       LWIP_DBG_ON
+// #define MEM_DEBUG                       LWIP_DBG_ON
 //#define DNS_DEBUG                       LWIP_DBG_ON
 //#define PBUF_DEBUG                      LWIP_DBG_ON
 //#define MEMP_DEBUG                      LWIP_DBG_ON

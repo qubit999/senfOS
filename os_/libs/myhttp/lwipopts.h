@@ -17,7 +17,7 @@
 #define TCP_SND_BUF                     (16 * TCP_MSS)  // Increased to 16
 #define TCP_SND_QUEUELEN                2 * (TCP_SND_BUF / TCP_MSS)
 #define TCP_RX_BUF                      (16 * TCP_MSS)  // Increased to 16
-#define TCP_WND                         (10 * TCP_MSS)
+#define TCP_WND                         16384
 #define TCP_MAXRTX                      12
 #define TCP_SYNMAXRTX                   6
 #define LWIP_ICMP                       1
@@ -27,6 +27,10 @@
 #define LWIP_STATS                      0
 #define LWIP_PROVIDE_ERRNO              1
 #define LWIP_HTTP_CLIENT                1
+#define LWIP_HTTPD                      1
+#define LWIP_ALTCP                      1
+#define LWIP_ALTCP_TLS                  1
+#define LWIP_ALTCP_TLS_MBEDTLS          1
 #define LWIP_DNS_SUPPORT_MDNS_QUERIES   1
 #define LWIP_DNS                        1
 #define DNS_MAX_SERVERS                 4
@@ -41,16 +45,6 @@
 #define LWIP_AUTOIP                     1
 #define LWIP_DHCP_AUTOIP_COOP           1
 #define LWIP_IPV6                       1
-#define LWIP_IPV6_DNS                    1
-#define LWIP_ARP                        1
-#define LWIP_TIMERS                     1
-
-#define LWIP_DEBUG                      1
-#define HTTPD_DEBUG                     LWIP_DBG_ON
-#define DNS_DEBUG                       LWIP_DBG_ON
-#define TCP_DEBUG                       LWIP_DBG_ON
-#define MEM_DEBUG                       LWIP_DBG_ON
-#define PBUF_DEBUG                      LWIP_DBG_ON
-#define MEMP_DEBUG                      LWIP_DBG_ON
+#define LWIP_IPV6_DNS                   1
 
 #endif // LWIPOPTS_H
