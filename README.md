@@ -24,7 +24,7 @@ Made in Germany. Built with C/C++, PicoSDK and Waveshare library.
 - [ ] Integrating a tiny LLM to monitor the hardware/software in case of failure or to fulfill small tasks
 - [ ] Extending support for an eInk paper module from Waveshare
 - [ ] Redesign the example page to make it look more appealing
-- [ ] Implement HTTPS for webserver
+- [x] Implement HTTPS for webserver
 - [ ] Dynamic DNS feature to update the DNS using a free DynDNS service
 
 ### Hardware Used
