@@ -5,7 +5,8 @@
     <title>Index</title>
 </head>
 <body>
-<h1>Index</h1>
+<h1>SenfOS Webserver</h1>
+<h2>Index</h2>
 <p>CGI and SSI implemented.</p>
 <p>The POST example doesn't show any value after submitting (but you can see the values when connected to the console).</p>
 <p>The GET example shows key and value of URL parameters after submitting using SSI.</p>
@@ -26,13 +27,24 @@
     <input type="submit" value="submit">
 </form>
 <h2>Send A Message To OLED Screen:</h2>
-<form action "/sendMessage" method="post">
+<form action="/sendMessage" method="post">
     <label for="msg">Nachricht:</label>
     <input type="text" name="msg" maxlength="32">
     <input type="submit" value="submit">
 </form>
 <h2>Download Example:</h2>
 <a href="hello.zip">Download hello.zip</a>
+<h2>Guestbook:</h2>
+<form action="/post" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" placeholder="Your name..">
+    <label for="message">Message:</label>
+    <textarea name="message" placeholder="Write guestbook entry.."></textarea>
+    <input type="submit" value="submit">
+</form>
+<div id="guestbook">
+    <!--#Entries1-->
+</div>
 <h2>Info</h2>
 <p>developed by a.s. / qubit999 / liquid_nitr0gen</p>
 <p>contact: <a href="mailto:regatta-42.pommel@icloud.com">regatta-42.pommel@icloud.com</a></p>

@@ -2,11 +2,13 @@
 #include "pico/cyw43_arch.h"
 #include "pico/platform.h"
 #include "pico/rand.h"
+#include <pico/flash.h>
 #include "hardware/structs/rosc.h"
 #include <stdio.h>
 #include <cstring>
 #include <string>
 #include <string.h>
+#include <vector>
 #include <algorithm>
 #include <iostream>
 
@@ -22,6 +24,16 @@
 #include "certs/certs.h"
 #include "myhttpserver.h"
 #include "oled.h"
+
+#define GB_NAME_LEN 64
+#define GB_MESSAGE_LEN 256
+
+struct GuestbookEntry {
+    std::string name;
+    std::string message;
+};
+
+std::vector<GuestbookEntry> guestbook_entries;
 
 static char stored_key1[64];
 static char stored_value1[64];
@@ -73,17 +85,71 @@ void sntp_set_system_time(uint32_t sec, uint32_t us)
   sntp_stop();
 }
 
+std::string escape_html(const std::string& str) {
+    std::string escaped;
+    for (char c : str) {
+        switch (c) {
+            case '&': escaped += "&amp;"; break;
+            case '<': escaped += "&lt;"; break;
+            case '>': escaped += "&gt;"; break;
+            case '"': escaped += "&quot;"; break;
+            case '\'': escaped += "&apos;"; break;
+            default: escaped += c; break;
+        }
+    }
+    return escaped;
+}
+
+std::string url_decode(const std::string &src) {
+    std::string decoded;
+    char a, b;
+    for (size_t i = 0; i < src.length(); i++) {
+        if ((src[i] == '%') && ((a = src[i + 1]) && (b = src[i + 2])) && (isxdigit(a) && isxdigit(b))) {
+            if (a >= 'a') a -= 'a' - 'A';
+            if (a >= 'A') a -= ('A' - 10);
+            else a -= '0';
+            if (b >= 'a') b -= 'a' - 'A';
+            if (b >= 'A') b -= ('A' - 10);
+            else b -= '0';
+            decoded += 16 * a + b;
+            i += 2;
+        } else if (src[i] == '+') {
+            decoded += ' ';
+        } else {
+            decoded += src[i];
+        }
+    }
+    return decoded;
+}
+
 static u16_t ssi_handler(int iIndex, char *pcInsert, int iInsertLen, u16_t current_tag_part, u16_t *next_tag_part) {
     printf("SSI handler called with index: %d\n", iIndex);
 
-    const char* value_to_insert = NULL;
+    const char *value_to_insert = NULL;
     size_t value_len = 0;
+
+    static std::string entries_html;
 
     switch (iIndex) {
         case 0: value_to_insert = stored_key1; break;
         case 1: value_to_insert = stored_value1; break;
         case 2: value_to_insert = stored_key2; break;
         case 3: value_to_insert = stored_value2; break;
+        case 4: {
+            // Generate HTML for guestbook entries
+            entries_html.clear();
+            // check if guestbook_entries[0].name is empty and guestbook_entries[0].message is empty
+            if (guestbook_entries.size() == 0) {
+                entries_html = "<p>No guestbook entries.</p>";
+                value_to_insert = entries_html.c_str();
+            } else {
+                for (const GuestbookEntry& entry : guestbook_entries) {
+                    entries_html += "<p><b>" + escape_html(entry.name) + "</b>: " + escape_html(entry.message) + "</p>";
+                }
+            }
+            value_to_insert = entries_html.c_str();
+            break;
+        }
         default:
             printf("SSI: Unknown index\n");
             return 0;
@@ -131,6 +197,27 @@ err_t httpd_post_receive_data(void *connection, struct pbuf *p)
         printf("No POST data received\n");
         pbuf_free(p);
         return ERR_OK;
+    }
+
+    // Parse the data as URL-encoded form
+    char *name_start = strstr(post_data, "name=");
+    char *message_start = strstr(post_data, "message=");
+    if (name_start && message_start) {
+        name_start += 5;  // Skip "name="
+        message_start += 8;  // Skip "message="
+
+        char *name_end = strchr(name_start, '&');
+        char *message_end = strchr(message_start, '&');
+
+        std::string name(name_start, name_end ? name_end - name_start : strlen(name_start));
+        std::string message(message_start, message_end ? message_end - message_start : strlen(message_start));
+
+        // URL decode the name and message
+        name = url_decode(name);
+        message = url_decode(message);
+
+        guestbook_entries.push_back({name, message});
+        printf("Guestbook entry added: Name=%s, Message=%s\n", name.c_str(), message.c_str());
     }
 
     if (strstr(post_data, "msg=") != NULL) {
@@ -279,7 +366,8 @@ void MyHTTPServer::start() {
         "Key1",     // <!--#Key1-->
         "Value1",   // <!--#Value1--> 
         "Key2",     // <!--#Key2-->
-        "Value2"    // <!--#Value2-->
+        "Value2",    // <!--#Value2-->
+        "Entries1", // <!--#Entries1-->
     };
 
     http_set_ssi_handler(ssi_handler, ssi_tags, 
@@ -311,7 +399,7 @@ void MyHTTPServer::start_cgi() {
     static const tCGI cgi_handlers[] = {
         {"/", [](int iIndex, int iNumParams, char *pcParam[], char *pcValue[]) -> const char* {
             MyHTTPServer::debugInfo(iIndex, iNumParams, pcParam, pcValue);
-            return "/index.html";
+            return "/index.shtml";
         }},
         {"/post", [](int iIndex, int iNumParams, char *pcParam[], char *pcValue[]) -> const char* {
             MyHTTPServer::debugInfo(iIndex, iNumParams, pcParam, pcValue);
@@ -334,7 +422,7 @@ void MyHTTPServer::start_cgi() {
         {"/sendMessage", [](int iIndex, int iNumParams, char *pcParam[], char *pcValue[]) -> const char* {
             MyHTTPServer::debugInfo(iIndex, iNumParams, pcParam, pcValue);
             return "/post.html";
-        }}
+        }},
     };
     http_set_cgi_handlers(cgi_handlers, sizeof(cgi_handlers) / sizeof(cgi_handlers[0]));
 };
