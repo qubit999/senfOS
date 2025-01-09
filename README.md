@@ -7,7 +7,7 @@ Watch the demo video by clicking the image above ☝️
 
 ## Description & Features
 
-senfOS™ 0.1 (Made in Germany) is powered by the Raspberry Pico 2W and Waveshare OLED 1.3 module. It features a small built-in http server with a small lightweight-filesystem to host html websites. Website visitors are able to send messages directly to your screen. It can connect to Wi-Fi networks or if no WiFi network is provided, it will automatically create a Wi-Fi hotspot that you can use to connect to and view the website. 
+senfOS™ (Made in Germany) is powered by the Raspberry Pico 2W and Waveshare OLED 1.3 module. It features a small built-in http server with a small lightweight-filesystem to host html websites. Website visitors are able to send messages directly to your screen. It can connect to Wi-Fi networks or if no WiFi network is provided, it will automatically create a Wi-Fi hotspot that you can use to connect to and view the website. 
 
 Interesting for developers: 
 - Built-in http client to fetch content and display on the OLED driver
