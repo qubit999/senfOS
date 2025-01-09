@@ -22,7 +22,7 @@ Made in Germany. Built with C/C++, PicoSDK and Waveshare library.
 - [ ] Using an GPIO extender board to connect sensors and modules and output them on the example website
 - [ ] Extend libs/myhttp to also support POST requests (currently only GET works) for specific API requests
 - [ ] Integrating a tiny LLM to monitor the hardware/software in case of failure or to fulfill small tasks
-- [ ] Extending support for an eInk paper module from Waveshare
+- [x] Extending support for an eInk paper module from Waveshare
 - [ ] Redesign the example page to make it look more appealing
 - [x] Implement HTTPS for webserver
 - [ ] Dynamic DNS feature to update the DNS using a free DynDNS service

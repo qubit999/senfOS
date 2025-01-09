@@ -34,6 +34,14 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_code/c/examples
 )
 
+# include_directories(
+#     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_ePaper_Code/c/lib/ePaper
+#     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_ePaper_Code/c/lib/Config
+#     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_ePaper_Code/c/lib/GUI
+#     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_ePaper_Code/c/lib/Fonts
+#     ${CMAKE_CURRENT_SOURCE_DIR}/../Pico_ePaper_Code/c/examples
+# )
+
 target_include_directories(myhttpserver PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -46,6 +54,8 @@ target_link_libraries(myhttpserver
     pico_lwip_mbedtls
     pico_mbedtls
     hardware_spi
+    hardware_i2c
+    hardware_pwm
     Config
     Infrared
     OLED
@@ -54,4 +64,9 @@ target_link_libraries(myhttpserver
     Fonts
     GUI
     examples
+    # Config
+    # ePaper
+    # GUI
+    # Fonts
+    # examples
 )

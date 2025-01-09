@@ -5,6 +5,7 @@
 
 #include <string>
 #include "oled.h"
+// #include "epd_213.h"
 #include "mbedtls/ssl.h"
 
 #include "lwip/altcp_tls.h"
@@ -40,6 +41,8 @@ public:
     static void debugInfo(int iIndex, int iNumParams, char *pcParam[], char *pcValue[]);
     static Pico_OLED_1_3& getOLED() { return oled; }
     static Pico_OLED_1_3 oled;
+    // static epd_213& getEPD() { return epd; }
+    // static epd_213 epd;
     struct altcp_tls_config *tls_config = NULL;
     //altcp_tls_config *altcp_tls_create_config_server_privkey_cert(const u8_t *privkey, size_t privkey_len, const u8_t *privkey_pass, size_t privkey_pass_len, const u8_t *cert, size_t cert_len);
 };
