@@ -23,7 +23,9 @@
 
 #include "certs/certs.h"
 #include "myhttpserver.h"
+#include "../settings.h"
 #include "oled.h"
+// #include "epd_213.h"
 
 #define GB_NAME_LEN 64
 #define GB_MESSAGE_LEN 256
@@ -51,6 +53,7 @@ void initialize_pcb() {
 }
 
 Pico_OLED_1_3 MyHTTPServer::oled;
+// epd_213 MyHTTPServer::epd;
 
 struct altcp_tls_config *tls_config = NULL;
 
@@ -243,7 +246,11 @@ err_t httpd_post_receive_data(void *connection, struct pbuf *p)
         std::string msg = msg_start;
         std::replace(msg.begin(), msg.end(), '+', ' ');
         const char* msg_cstr = msg.c_str();
-        MyHTTPServer::oled.drawPage("MESSAGE RX", "MESSAGE", msg_cstr, "", 12);
+        if(DISPLAY_MODULE == 1) {
+            MyHTTPServer::oled.drawPage("MESSAGE RX", "MESSAGE", msg_cstr, "", 12);
+        } else if(DISPLAY_MODULE == 2) {
+            // MyHTTPServer::epd.drawPage("MESSAGE RX", "MESSAGE", msg_cstr, "", 12);
+        }
         pbuf_free(p);
         return ERR_OK;
     }

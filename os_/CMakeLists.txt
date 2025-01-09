@@ -1,7 +1,21 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.1.0)
+set(toolchainVersion 13_3_Rel1)
+set(picotoolVersion 2.1.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Initialise pico_sdk from installed location
@@ -39,8 +53,6 @@ ${CMAKE_CURRENT_LIST_DIR}/memmap_custom_4MB.ld
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
-
 add_subdirectory(Pico_code/c/lib/Config)
 add_subdirectory(Pico_code/c/lib/Infrared)
 add_subdirectory(Pico_code/c/lib/OLED)
@@ -59,6 +71,17 @@ include_directories(./Pico_code/c/lib/OLED)
 include_directories(./Pico_code/c/lib/Fonts)
 include_directories(./Pico_code/c/examples)
 
+# add_subdirectory(Pico_ePaper_Code/c/lib/Config)
+# add_subdirectory(Pico_ePaper_Code/c/lib/e-Paper)
+# add_subdirectory(Pico_ePaper_Code/c/lib/Fonts)
+# add_subdirectory(Pico_ePaper_Code/c/lib/GUI)
+# add_subdirectory(Pico_ePaper_Code/c/examples)
+
+# include_directories(./Pico_ePaper_Code/c/examples)
+# include_directories(./Pico_ePaper_Code/c/lib/Config)
+# include_directories(./Pico_ePaper_Code/c/lib/GUI)
+# include_directories(./Pico_ePaper_Code/c/lib/e-Paper)
+
 # Add my libraries
 add_subdirectory(libs/)
 add_subdirectory(myhttpserver/)
@@ -72,7 +95,7 @@ add_compile_options(-fexceptions)
 add_executable(os_ main.cpp settings.h)
 
 pico_set_program_name(os_ "senfOS")
-pico_set_program_version(os_ "0.1")
+pico_set_program_version(os_ "0.2")
 
 set(PICO_DEFAULT_USB_BAUD_RATE 115200)
 
@@ -105,6 +128,11 @@ target_link_libraries(os_
     hardware_timer 
     hardware_watchdog 
     hardware_clocks
+    # examples
+    # ePaper
+    # GUI
+    # Fonts
+    # Config
     blink
     mywifi
     myhttp
