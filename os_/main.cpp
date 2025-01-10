@@ -69,7 +69,7 @@ void setup() {
             MyHTTPServer hotspot_server;
             std::string ssid = std::string("") + std::string(HOTSPOT_NAME);
             std::string pass = std::string("") + std::string(HOTSPOT_PASS);
-            std::string ip_adr = std::string("192.168.4.1:") + std::string(std::to_string(HTTPD_SERVER_PORT));
+            std::string ip_adr = std::string("192.168.4.1");
             display.drawPage("HOTSPOT ACTIVE", ssid.c_str(), pass.c_str(), ip_adr.c_str(), 12);
             
             while(true) {
